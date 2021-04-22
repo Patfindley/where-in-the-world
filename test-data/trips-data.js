@@ -1,4 +1,4 @@
-const trips = {
+const trips = [
   {
     id: 1,
     userID: 1,
@@ -80,6 +80,6 @@ const trips = {
     suggestedActivities: []
   }
 
-}
+];
 
 export default trips;
