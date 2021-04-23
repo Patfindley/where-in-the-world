@@ -28,7 +28,7 @@ describe('TripsRepo', () => {
   });
 
   it('should have a method to calculate the traveler\'s total spent on trips', () => {
-    expect(tripsRepo.travelerTotalSpent(1, destinations1.destinations)).to.eql();
+    expect(tripsRepo.travelerTotalSpent(1, destinations1.destinations)).to.eql(36069.835999999996);
   })
 
 
