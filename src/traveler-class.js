@@ -3,7 +3,9 @@ class Traveler {
     this.id = data.id;
     this.name = data.name;
     this.type = data.travelerType;
-  }  
+  }
+
+  
 
 };
 

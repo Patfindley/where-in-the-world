@@ -6,20 +6,19 @@ export const getData = () => {
   let travelerData = fetch(travelersAPI)
     .then(response => response.json())
     .then(travelerData => {
-      console.log('retrieved travelerData!', travelerData)
-      return travelerData;
+      return travelerData.travelers;
     })
 
   let tripsData = fetch(tripsAPI)
     .then(response => response.json())
     .then(tripsData => {
-      return tripsData;
+      return tripsData.trips;
     })
 
   let destinationsData = fetch(destinationsAPI)
     .then(response => response.json())
     .then(destinationsData => {
-      return destinationsData;
+      return destinationsData.destinations;
     })
 
   return Promise.all([travelerData, tripsData, destinationsData])

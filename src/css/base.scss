@@ -1,9 +1,28 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-@import 'normalize'
+@import 'normalize';
 
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+$primary-background: #FBFBF8;
+
 
 body {
   background: $primary-background;
+};
+
+
+
+
+@media only screen and (min-device-width: 812px) {
+  .side-window {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    text-align: center;
+    // overflow: hidden;
+    // flex-wrap: nowrap;
+  }
 }
