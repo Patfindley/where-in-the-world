@@ -1,3 +1,5 @@
+import { bookPlannedTrip} from './index';
+
 
 const domUpdates = {
 
@@ -59,18 +61,29 @@ const domUpdates = {
     })
   },
 
-  bookTrip(destinations, trips) {
+  bookTrip(event, currentUser, destinations, trips) {
+    event.preventDefault();
     const estimatedTripCost = document.getElementById('estimatedTripCost');
     const numTravelers = document.getElementById('numTravelers');
-    const tripDepart = document.getElementById('tripDepart').split('-');
-    const tripReturn = document.getElementById('tripReturn').split('-');
-    const departureDate = tripDepart.value.split('-');
-
-    console.log(tripDepart.value, '<>>> depart');
-    console.log(tripReturn.value, '<>>> return');
-
-
-    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(numTravelers.value, destinationList.value)}`
+    const tripDepart = document.getElementById('tripDepart');
+    const tripReturn = document.getElementById('tripReturn');
+    const daysAway = tripReturn.value.split('-')[2] - tripDepart.value.split('-')[2];
+    let tripID = trips.allTrips.length;
+    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(numTravelers.value, Number(destinationList.value), daysAway, destinations)}$`;
+    console.log(trips, trips.allTrips.length);
+    bookPlannedTrip(tripID + 1, currentUser.id, Number(destinationList.value), Number(numTravelers.value), tripDepart.value.split('-').join('/'), daysAway);
+    tripID++
+    currentUser.trips.push({
+      id: tripID + 1,
+      userID: currentUser.id ,
+      destinationID: Number(destinationList.value) ,
+      travelers: Number(numTravelers.value) ,
+      date: tripDepart.value.split('-').join('/') ,
+      duration: daysAway,
+      status: 'pending',
+      suggestedActivities: []
+    })
+    domUpdates.displayDestinations(currentUser, trips.travelerTrips(currentUser.id), trips.destinationsVisited(currentUser.id, destinations));
   },
 
   displayErr(err) {

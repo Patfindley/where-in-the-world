@@ -37,7 +37,7 @@ describe('TripsRepo', () => {
   })
 
   it('should have a method to calculate a new trips cost estimate' , () => {
-    expect(tripsRepo.tripEstimate(numTravelers5, destination2, 4,  destinations1)).to.eql(6490);
+    expect(tripsRepo.tripEstimate(numTravelers5, destination2, 4,  destinations1.destinations)).to.eql(6490);
   })
 
 

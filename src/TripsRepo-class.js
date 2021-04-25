@@ -27,9 +27,9 @@ class TripsRepo {
   }
 
   tripEstimate(numTravelers, destinationID, numDays, destinations) {
-    const destination = destinations.destinations.find(destinations => destinations.id === destinationID);
-    const flightTotal = destination.estimatedFlightCostPerPerson * numTravelers;
-    const stayTotal = (destination.estimatedLodgingCostPerDay * numTravelers) * numDays;
+    const foundDestination = destinations.find(destination => destination.id === destinationID);
+    const flightTotal = foundDestination.estimatedFlightCostPerPerson * numTravelers;
+    const stayTotal = (foundDestination.estimatedLodgingCostPerDay * numTravelers) * numDays;
     const agentFee = (flightTotal + stayTotal) * 0.1
     return (flightTotal + stayTotal) + agentFee;
   }
