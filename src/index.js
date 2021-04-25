@@ -3,8 +3,9 @@ import './css/base.scss';
 
 import domUpdates from './dom-update.js';
 
-import TripsRepo from './TripsRepo-Class'
-import DestinationsRepo from './DestinationsRepo-Class'
+import Traveler from './Traveler-Class';
+import TripsRepo from './TripsRepo-Class';
+import DestinationsRepo from './DestinationsRepo-Class';
 
 import datepicker from 'js-datepicker'
 // const picker = datepicker('selector', 'options');
@@ -13,14 +14,20 @@ import { getData, postData } from './APICalls';
 // import './images/turing-logo.png'
 
 const userName = document.getElementById('userName');
-const bookTrip = document.getElementById('bookTrip');
+const planTrip = document.getElementById('planTrip');
 const newTripForm = document.getElementById('NewTripForm');
-let allDestinations, trips;
+const bookTrip = document.getElementById('bookTrip');
+
+let currentUser, allDestinations, trips;
 window.onload = onStartup();
 
-bookTrip.addEventListener('click', () => {
-  domUpdates.bookTrip(allDestinations.destinations, trips);
+planTrip.addEventListener('click', () => {
+  domUpdates.planTrip(allDestinations.destinations, trips);
 });
+
+bookTrip.addEventListener('click', () => {
+  domUpdates.bookTrip(event, currentUser, allDestinations.destinations, trips);
+})
 
 
 function onStartup() {
@@ -32,14 +39,41 @@ function fetchCurrentData() {
   getData()
   .then(allData => {
     let userID = 2;
-    let currentUser = allData.travelerData.find(traveler => {
-      return traveler.id === Number(userID);
-    });
-    let trips = new TripsRepo(allData.tripsData);
+    trips = new TripsRepo(allData.tripsData);
     allDestinations = new DestinationsRepo(allData.destinationsData);
-    let visitedDestinations = trips.destinationsVisited(userID, allDestinations.destinations);
+    currentUser = new Traveler(allData.travelerData.find(traveler => traveler.id === Number(userID)));
+    currentUser.travelerTrips(trips.allTrips)
+    let visitedDestinations = currentUser.destinationsVisited(allDestinations.destinations);
     domUpdates.greetUser(currentUser);
     domUpdates.displayTravelerInfo(trips.travelerAnnualSpent(userID, allDestinations.destinations), trips.travelerTrips(userID)); // refactor this
-    domUpdates.displayDestinations(currentUser, trips.travelerTrips(userID), visitedDestinations);
+    domUpdates.displayDestinations(currentUser, currentUser.trips, currentUser.destinationsVisited(allDestinations.destinations));
   })
 }
+
+export function bookPlannedTrip(id, userID, destID, numTravelers, departDate, daysAway) {
+  let data = {
+    "id": id ,
+    "userID": userID ,
+    "destinationID": destID ,
+    "travelers": numTravelers ,
+    "date": departDate ,
+    "duration": daysAway,
+    "status": 'pending',
+    "suggestedActivities": []
+  }
+  postData(data);
+}
+
+// function removePantry(arr) {
+//   if (typeof(arr[0]) === "string") {
+//     return
+//   }
+//   arr.forEach(ingredient => {
+//     let data = {
+//       "userID": user.id,
+//       "ingredientID": ingredient.id,
+//       "ingredientModification": Number(`-${ingredient.quantity.amount}`)
+//     };
+//     postData(data)
+//   })
+//}

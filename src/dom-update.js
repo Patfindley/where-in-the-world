@@ -1,3 +1,5 @@
+import { bookPlannedTrip} from './index';
+
 
 const domUpdates = {
 
@@ -44,8 +46,7 @@ const domUpdates = {
     });
   },
 
-  bookTrip(destinations, trips) {
-    console.log(destinations);
+  planTrip(destinations, trips) {
     const userStats = document.getElementById('userInfo');
     const newTripForm = document.getElementById('newTripForm');
     const destinationList = document.getElementById('destinationList');
@@ -57,27 +58,32 @@ const domUpdates = {
     newTripForm.classList.toggle('hidden');
     destinationList.innerHTML = destinations.map(destination => {
       return `<option value="${destination.id}"> "${destination.destination}" </option>`
-
     })
+  },
 
-
-
-
-    // newTripForm.innerHTML =
-    // `<label for="destination-list">Destinations</label>
-    // <select aria-label="destination-select" class="destination-list trip-form" name="destination-list">
-    // ${destinations.map(destination => {
-    //   return `<option value="${destination.id}">"${destination.destination}"</option>`
-    //   })
-    // }
-    // </select>
-    // <label for="trip-depart">Departure Date</label>
-    // <input aria-label="start-date-selector" type="date" class="trip-depart" name="trip-depart" min="${Date.now}">
-    // <label for="trip-return">Return Date</label>
-    // <input aria-label="return-date-selector" type="date" class"trip-return" name="trip-return">
-    // <label for="number-of-travelers">Number of Travelers</label>
-    // <input aria-label="number-of-travelers-select" type="number" class="number-travelers" value="1" min="1">
-    // <h3 aria-label="estimated-trip-cost" class="estimated-trip-cost trip-error">Estimated Cost: ${trips.tripEstimate()}</h3>`
+  bookTrip(event, currentUser, destinations, trips) {
+    event.preventDefault();
+    const estimatedTripCost = document.getElementById('estimatedTripCost');
+    const numTravelers = document.getElementById('numTravelers');
+    const tripDepart = document.getElementById('tripDepart');
+    const tripReturn = document.getElementById('tripReturn');
+    const daysAway = tripReturn.value.split('-')[2] - tripDepart.value.split('-')[2];
+    let tripID = trips.allTrips.length;
+    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(numTravelers.value, Number(destinationList.value), daysAway, destinations)}$`;
+    console.log(trips, trips.allTrips.length);
+    bookPlannedTrip(tripID + 1, currentUser.id, Number(destinationList.value), Number(numTravelers.value), tripDepart.value.split('-').join('/'), daysAway);
+    tripID++
+    currentUser.trips.push({
+      id: tripID + 1,
+      userID: currentUser.id ,
+      destinationID: Number(destinationList.value) ,
+      travelers: Number(numTravelers.value) ,
+      date: tripDepart.value.split('-').join('/') ,
+      duration: daysAway,
+      status: 'pending',
+      suggestedActivities: []
+    })
+    domUpdates.displayDestinations(currentUser, trips.travelerTrips(currentUser.id), trips.destinationsVisited(currentUser.id, destinations));
   },
 
   displayErr(err) {
