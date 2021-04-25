@@ -7,12 +7,17 @@ import DestinationsRepo from '../src/DestinationsRepo-class';
 
 import TripsRepo from '../src/TripsRepo-class';
 
-let tripsRepo, destinations1;
+let tripsRepo, destinations1, numTravelers5, numTravelers3, destination2, destination4;
 
 describe('TripsRepo', () => {
   beforeEach(() => {
     tripsRepo = new TripsRepo(trips);
     destinations1 = new DestinationsRepo(destinations)
+    numTravelers5 = 5;
+    numTravelers3 = 3;
+    destination2 = 2;
+    destination4 = 4;
+
   });
 
   it('should have a property containing ALL trip data', () => {
@@ -27,8 +32,12 @@ describe('TripsRepo', () => {
     { id: 4, userID: 1, destinationID: 4, travelers: 2, date: "2020/02/25", duration: 10, status: "approved", suggestedActivities: []}]);
   });
 
-  it('should have a method to calculate the traveler\'s total spent on trips', () => {
-    expect(tripsRepo.travelerTotalSpent(1, destinations1.destinations)).to.eql(36069.835999999996);
+  it('should have a method to calculate the traveler\'s total spent on trips in a year', () => {
+    expect(tripsRepo.travelerAnnualSpent(1, destinations1.destinations)).to.eql(34664.3);
+  })
+
+  it('should have a method to calculate a new trips cost estimate' , () => {
+    expect(tripsRepo.tripEstimate(numTravelers5, destination2, 4,  destinations1)).to.eql(6490);
   })
 
 

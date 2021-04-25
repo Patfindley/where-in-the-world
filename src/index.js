@@ -13,14 +13,20 @@ import { getData, postData } from './APICalls';
 // import './images/turing-logo.png'
 
 const userName = document.getElementById('userName');
-const bookTrip = document.getElementById('bookTrip');
+const planTrip = document.getElementById('planTrip');
 const newTripForm = document.getElementById('NewTripForm');
+const bookTrip = document.getElementById('bookTrip');
+
 let allDestinations, trips;
 window.onload = onStartup();
 
+planTrip.addEventListener('click', () => {
+  domUpdates.planTrip(allDestinations.destinations, trips);
+});
+
 bookTrip.addEventListener('click', () => {
   domUpdates.bookTrip(allDestinations.destinations, trips);
-});
+})
 
 
 function onStartup() {
