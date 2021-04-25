@@ -20,9 +20,22 @@ body {
     display: flex;
   };
 
+  .book-trip {
+    border: 0;
+    width: 175px;
+    width: var(__size);
+    height: 175px;
+    width: var(__size);
+    border-radius: 69px;
+    background: #FBFBF8;
+    box-shadow:  -20px 20px 60px #d5d5d3,
+                  20px -20px 60px #ffffff;
+  }
+
   .side-window {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 30%;
   }
 
@@ -62,5 +75,8 @@ body {
     // }
   }
 
+  .hidden {
+    display: none !important;
+  }
 
 }

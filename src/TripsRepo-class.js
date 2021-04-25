@@ -26,6 +26,10 @@ class TripsRepo {
     }, 0)
   }
 
+  tripEstimate(numTravelers, destinationID) {
+
+  }
+
 }
 
 export default TripsRepo;

@@ -10,11 +10,25 @@
       <img class="user-picture" src="" alt="user profile picture">
       <h1 class="user-name" id="userName">User</h1>
       <h2 class="traveler-type" id="travelerType">Type</h2>
-      <div class="user-info" id="userInfo">
+      <div class="user-stats" id="userInfo">
         Welcome! User info goes here!
       </div>
-      <form class="new-trip-form">
+      <form class="new-trip-form side hidden" id="newTripForm">
+        <label for="destination-list">Destinations</label>
+        <select aria-label="destination-select" class="destination-list trip-form" id="destinationList" name="destination-list">
+
+        </select>
+        <label for="trip-depart">Departure Date</label>
+        <input aria-label="start-date-selector" type="date" class="trip-depart" id="tripDepart" name="trip-depart" min="${Date.now}">
+        <label for="trip-return">Return Date</label>
+        <input aria-label="return-date-selector" type="date" class"trip-return" id="tripReturn" name="trip-return">
+        <label for="number-of-travelers">Number of Travelers</label>
+        <input aria-label="number-of-travelers-select" type="number" class="number-travelers" id="numTravelers" value="1" min="1">
+        <h3 aria-label="estimated-trip-cost" class="estimated-trip-cost trip-error" id="estimatedTripCost"></h3>
       </form>
+      <button class="book-trip" id="bookTrip">
+      Go Somewhere!
+      </button>
     </aside>
     <main>
       <h1 class="display-title">Where To?</h1>
