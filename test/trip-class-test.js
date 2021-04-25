@@ -5,7 +5,7 @@ import Trip from '../src/trip-class';
 
 let trip1, trip2;
 
-describe('trips', () => {
+describe('trip', () => {
   beforeEach(() => {
     trip1 = new Trip(trips[0]);
     trip2 = new Trip(trips[5]);
@@ -20,7 +20,7 @@ describe('trips', () => {
   });
 
   it('should have a property of destinationID', () => {
-    expect(trip1.destinationID).to.eql(49);
+    expect(trip1.destinationID).to.eql(1);
   });
 
   it('should have a property of travelers', () => {

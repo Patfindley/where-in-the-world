@@ -2,7 +2,7 @@ const trips = [
   {
     id: 1,
     userID: 1,
-    destinationID: 49,
+    destinationID: 1,
     travelers: 1,
     date: "2019/09/16",
     duration: 8,
@@ -12,7 +12,7 @@ const trips = [
   {
     id: 2,
     userID: 1,
-    destinationID: 25,
+    destinationID: 2,
     travelers: 5,
     date: "2020/10/04",
     duration: 18,
@@ -22,7 +22,7 @@ const trips = [
   {
     id: 3,
     userID: 1,
-    destinationID: 22,
+    destinationID: 3,
     travelers: 4,
     date: "2020/05/22",
     duration: 17,
@@ -32,7 +32,7 @@ const trips = [
   {
     id: 4,
     userID: 1,
-    destinationID: 14,
+    destinationID: 4,
     travelers: 2,
     date: "2020/02/25",
     duration: 10,
@@ -42,7 +42,7 @@ const trips = [
   {
     id: 5,
     userID: 2,
-    destinationID: 29,
+    destinationID: 5,
     travelers: 3,
     date: "2020/04/30",
     duration: 18,
@@ -52,7 +52,7 @@ const trips = [
   {
     id: 6,
     userID: 2,
-    destinationID: 35,
+    destinationID: 6,
     travelers: 3,
     date: "2020/06/29",
     duration: 9,
@@ -62,7 +62,7 @@ const trips = [
   {
     id: 7,
     userID: 2,
-    destinationID: 17,
+    destinationID: 7,
     travelers: 5,
     date: "2020/5/28",
     duration: 20,
@@ -72,7 +72,7 @@ const trips = [
   {
     id: 8,
     userID: 2,
-    destinationID: 39,
+    destinationID: 8,
     travelers: 6,
     date: "2021/02/07",
     duration: 4,

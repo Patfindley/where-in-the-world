@@ -4,6 +4,9 @@ class Traveler {
     this.name = data.name;
     this.type = data.travelerType;
   }
+
+  
+
 };
 
 export default Traveler;
