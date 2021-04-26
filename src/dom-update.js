@@ -63,7 +63,6 @@ const domUpdates = {
 
   planTrip(destinations, trips) {
     const today = new Date();
-    console.log(today)
     const userStats = document.getElementById('userInfo');
     const newTripForm = document.getElementById('newTripForm');
     const destinationList = document.getElementById('destinationList');
@@ -107,7 +106,8 @@ const domUpdates = {
       status: 'pending',
       suggestedActivities: []
     })
-    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(numTravelers.value, Number(destinationList.value), daysAway, destinations)}$`;
+    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, destinations)}$`;
+    bookTrip.innerHTML = "BOOKED!"
     domUpdates.displayDestinations(currentUser, trips.travelerTrips(currentUser.id), trips.destinationsVisited(currentUser.id, destinations));
   }
   },

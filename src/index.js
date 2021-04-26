@@ -17,7 +17,10 @@ const userName = document.getElementById('userName');
 const planTrip = document.getElementById('planTrip');
 const tripsDisplay = document.getElementById('tripsDisplay');
 
-const newTripForm = document.getElementById('NewTripForm');
+const newTripForm = document.getElementById('newTripForm');
+const tripDepart = document.getElementById('tripDepart');
+const tripReturn = document.getElementById('tripReturn');
+const numTravelers = document.getElementById('numTravelers');
 const bookTrip = document.getElementById('bookTrip');
 const backToMain = document.getElementById('backToMain');
 
@@ -38,6 +41,10 @@ planTrip.addEventListener('click', () => {
 
 bookTrip.addEventListener('click', () => {
   domUpdates.bookTrip(event, currentUser, allDestinations.destinations, trips);
+})
+
+newTripForm.addEventListener('change', () => {
+  getTripEstimate();
 })
 
 backToMain.addEventListener('click', () => {
@@ -67,15 +74,12 @@ function userValidation() {
   } else if (passwordInput.value != 'travel2020') {
     loginError.innerHTML = 'Invalid password, please try again.'
   }
-
 }
-
 
 function fetchCurrentData(num) {
   getData(num)
   .then(allData => {
     let userID = num;
-    console.log(userID);
     trips = new TripsRepo(allData.tripsData);
     allDestinations = new DestinationsRepo(allData.destinationsData);
     currentUser = new Traveler(allData.travelerData.find(traveler => traveler.id === Number(userID)));
@@ -85,6 +89,17 @@ function fetchCurrentData(num) {
     domUpdates.displayTravelerInfo(trips.travelerAnnualSpent(userID, allDestinations.destinations), trips.travelerTrips(userID)); // refactor this
     domUpdates.displayDestinations(currentUser, currentUser.trips, currentUser.destinationsVisited(allDestinations.destinations));
   })
+}
+
+function getTripEstimate() {
+  const daysAway = tripReturn.value.split('-')[2] - tripDepart.value.split('-')[2];
+  if (!tripDepart.value || !tripReturn.value) {
+    let daysAway = 1
+    console.log(trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, allDestinations.destinations))
+    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, allDestinations.destinations)}$`;
+  } else {
+  estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, allDestinations.destinations)}$`;
+}
 }
 
 export function bookPlannedTrip(id, userID, destID, numTravelers, departDate, daysAway) {
