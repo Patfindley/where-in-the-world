@@ -5,34 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <aside class="side-window">
-      User Info
+    <section class="login-page" id="loginPage">
+      <h1 class="display-title"> Where To</h1>
+      <label for="username-input">USER NAME</label>
+      <input aria-label="username-input" name="username-input" class="username-input" id="usernameInput">
+      <label for="password-input">PASSWORD</label>
+      <input aria-label="password-input" name="password-input" class="password-input" id="passwordInput">
+      <p class="login-error" id="loginError"></p>
+      <button class="login-button" id="loginButton">Let's Go</button>
+    </section>
+    <aside class="side-window hidden" id="sideWindow">
       <img class="user-picture" src="" alt="user profile picture">
       <h1 class="user-name" id="userName" aria-label="user-name">User</h1>
       <h2 class="traveler-type" id="travelerType" aria-label="traveler-type">Type</h2>
       <div class="user-stats" id="userInfo">
-        Welcome! User info goes here!
       </div>
       <form class="new-trip-form side hidden" id="newTripForm">
         <label for="destination-list">Destinations</label>
         <select aria-label="destination-select" class="destination-list trip-form" id="destinationList" name="destination-list">
         </select>
         <label for="trip-depart">Departure Date</label>
-        <input aria-label="start-date-selector" type="date" class="trip-depart" id="tripDepart" name="trip-depart" min="${Date.now}">
+        <input aria-label="start-date-selector" type="date" class="trip-depart" id="tripDepart" name="trip-depart" min="">
         <label for="trip-return">Return Date</label>
         <input aria-label="return-date-selector" type="date" class"trip-return" id="tripReturn" name="trip-return">
         <label for="number-of-travelers">Number of Travelers</label>
         <input aria-label="number-of-travelers-select" type="number" class="number-travelers" id="numTravelers" value="1" min="1">
         <h3 aria-label="estimated-trip-cost" class="estimated-trip-cost trip-error" id="estimatedTripCost"></h3>
-        <button class="book-trip" id="bookTrip" aria-label="book-trip">
+        <button class="book-trip" id="bookTrip" aria-label="book-trip">BOOK IT!</button>
+        <button class="back-to-main" id="backToMain" aria-label="back-to-main">Back To Main</button>
       </form>
-      <button class="plan-trip" id="planTrip" aria-label="plan-trip">
-      Go Somewhere!
-      </button>
+      <button class="plan-trip hidden" id="planTrip" aria-label="plan-trip">Go Somewhere!</button>
     </aside>
-    <main>
-      <h1 class="display-title">Where To?</h1>
-      Trips
+    <main class="hidden" id="tripsDisplay">
+      <h1 class="display-title">Where To</h1>
       <section class="user-trips" id="userTrips">
       </sectin>
     </main>

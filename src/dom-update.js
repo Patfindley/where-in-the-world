@@ -3,6 +3,15 @@ import { bookPlannedTrip} from './index';
 
 const domUpdates = {
 
+  userLogin() {
+    console.log(userName);
+    if (usernameInput)
+    loginPage.classList.toggle('hidden');
+    sideWindow.classList.toggle('hidden');
+    tripsDisplay.classList.toggle('hidden');
+    planTrip.classList.toggle('hidden');
+  },
+
   greetUser(user) {
     const userName = document.getElementById('userName');
     const travelerType = document.getElementById('travelerType');
@@ -32,7 +41,6 @@ const domUpdates = {
     userTrips.innerHTML = '';
     destinations.map(destination => {
       let trip = trips.find(trip => {return trip.destinationID === destination.id})
-      console.log(trip)
       const tripDetailsDisplay = document.getElementById('tripDetailsDisplay')
       return userTrips.innerHTML +=
       `<article class="trip" aria-label="trip-information">
@@ -41,6 +49,7 @@ const domUpdates = {
           <div class="trip-info-display">
             <div class="trip-details-display" id="tripDetailsDisplay ${destination.id}">
             <h2 id="destinationDisplay"aria-label="destination">${destination.destination}</h2>
+              <h3 class="trip-status" aria-label="trip-status">${trip.status}</h3>
               <h3 class="trip-date">Departure: ${trip.date}</h3>
               <h3>Duration: ${trip.duration} Days</h3>
               <h3>Travelers: ${trip.travelers}</h3>
@@ -52,25 +61,8 @@ const domUpdates = {
     });
   },
 
-  // `<div class="trip-details-display" id="tripDetailsDisplay ${destination.id}">
-  //   <h3 class="trip-date">Departure: ${trip.date}</h3>
-  //   <h3>Duration: ${trip.duration}</h3>
-  //   <h3>Travelers: ${trip.travelers}</h3>
-  //   <h3>Points Earned:</h3>
-  // </div>
-  // `
-
-  // ${trips.map(trip => {
-  //   return destinationDisplay.insertAdjacentHTML('afterend', `<div
-  //    class="trip-details-display" id="tripDetailsDisplay ${destination.id}">
-  //     <h3 class="trip-date">Departure: ${trip.date}</h3>
-  //     <h3>Duration: ${trip.duration}</h3>
-  //     <h3>Travelers: ${trip.travelers}</h3>
-  //     <h3>Points Earned:</h3>
-  //   </div> `)
-  // })}
-
   planTrip(destinations, trips) {
+    const today = new Date();
     const userStats = document.getElementById('userInfo');
     const newTripForm = document.getElementById('newTripForm');
     const destinationList = document.getElementById('destinationList');
@@ -78,6 +70,8 @@ const domUpdates = {
     const tripDepart = document.getElementById('tripDepart');
     const tripReturn = document.getElementById('tripReturn');
     const numTravelers = document.getElementById('numTravelers');
+    newTripForm.setAttribute('min', today)
+    planTrip.classList.toggle('hidden');
     userStats.classList.toggle('hidden');
     newTripForm.classList.toggle('hidden');
     destinationList.innerHTML = destinations.map(destination => {
@@ -93,8 +87,13 @@ const domUpdates = {
     const tripReturn = document.getElementById('tripReturn');
     const daysAway = tripReturn.value.split('-')[2] - tripDepart.value.split('-')[2];
     let tripID = trips.allTrips.length;
-    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(numTravelers.value, Number(destinationList.value), daysAway, destinations)}$`;
-    console.log(trips, trips.allTrips.length);
+    if (!tripDepart.value) {
+      estimatedTripCost.innerHTML = "Please select departure date";
+    } else if (new Date(tripDepart.value) < Date.now() || new Date(tripReturn.value) < Date.now()) {
+      estimatedTripCost.innerHTML = "Please select valid departure date";
+    } else if (!tripReturn.value) {
+      estimatedTripCost.innerHTML = "Please select return date"
+    } else {
     bookPlannedTrip(tripID + 1, currentUser.id, Number(destinationList.value), Number(numTravelers.value), tripDepart.value.split('-').join('/'), daysAway);
     tripID++
     currentUser.trips.push({
@@ -107,7 +106,10 @@ const domUpdates = {
       status: 'pending',
       suggestedActivities: []
     })
+    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, destinations)}$`;
+    bookTrip.innerHTML = "BOOKED!"
     domUpdates.displayDestinations(currentUser, trips.travelerTrips(currentUser.id), trips.destinationsVisited(currentUser.id, destinations));
+  }
   },
 
   displayErr(err) {
