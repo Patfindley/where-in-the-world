@@ -7,10 +7,12 @@
 $primary-background: #FBFBF8;
 
 
+
 body {
   background: $primary-background;
   display: flex;
   font-family: 'Didact Gothic', sans-serif;
+  color: #00435A;
 };
 
 
@@ -21,6 +23,27 @@ body {
     background: $primary-background;
     display: flex;
   };
+
+  .login-page {
+    display: flex;
+    flex-direction: column;
+    margin-left: 43%;
+    margin-top: 15%;
+    text-align: center;
+  }
+
+  .login-button {
+    font-family: 'Special Elite', cursive;
+    color: #00435A;
+    font-size: 2em;
+    border: 0;
+    width: 175px;
+    height: 175px;
+    border-radius: 69px;
+    background: #FBFBF8;
+    box-shadow:  -20px 20px 60px #d5d5d3,
+                  20px -20px 60px #ffffff;
+  }
 
   .plan-trip {
     border: 0;

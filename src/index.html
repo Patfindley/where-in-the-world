@@ -5,13 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <aside class="side-window">
-      User Info
+    <section class="login-page" id="loginPage">
+      <h1 class="display-title"> Where To</h1>
+      <label for="username-input">USER NAME</label>
+      <input aria-label="username-input" name="username-input" class="username-input" id="usernameInput">
+      <label for="password-input">PASSWORD</label>
+      <input aria-label="password-input" name="password-input" class="password-input" id="passwordInput">
+      <p class="login-error" id="loginError"></p>
+      <button class="login-button" id="loginButton">Let's Go</button>
+    </section>
+    <aside class="side-window hidden" id="sideWindow">
       <img class="user-picture" src="" alt="user profile picture">
       <h1 class="user-name" id="userName" aria-label="user-name">User</h1>
       <h2 class="traveler-type" id="travelerType" aria-label="traveler-type">Type</h2>
       <div class="user-stats" id="userInfo">
-        Welcome! User info goes here!
       </div>
       <form class="new-trip-form side hidden" id="newTripForm">
         <label for="destination-list">Destinations</label>
@@ -27,9 +34,9 @@
         <button class="book-trip" id="bookTrip" aria-label="book-trip">BOOK IT!</button>
         <button class="back-to-main" id="backToMain" aria-label="back-to-main">Back To Main</button>
       </form>
-      <button class="plan-trip" id="planTrip" aria-label="plan-trip">Go Somewhere!</button>
+      <button class="plan-trip hidden" id="planTrip" aria-label="plan-trip">Go Somewhere!</button>
     </aside>
-    <main>
+    <main class="hidden" id="tripsDisplay">
       <h1 class="display-title">Where To</h1>
       <section class="user-trips" id="userTrips">
       </sectin>

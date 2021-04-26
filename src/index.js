@@ -12,14 +12,27 @@ import datepicker from 'js-datepicker'
 import { getData, postData } from './APICalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
+const loginButton = document.getElementById('loginButton');
+const loginPage = document.getElementById('loginPage');
 
 const userName = document.getElementById('userName');
 const planTrip = document.getElementById('planTrip');
+const tripsDisplay = document.getElementById('tripsDisplay');
+
 const newTripForm = document.getElementById('NewTripForm');
 const bookTrip = document.getElementById('bookTrip');
 const backToMain = document.getElementById('backToMain');
+
+const sideWindow = document.getElementById('sideWindow');
+const userStats = document.getElementById('userInfo');
+
+
 let currentUser, allDestinations, trips;
-window.onload = onStartup();
+// window.onload = onStartup();
+
+loginButton.addEventListener('click', () => {
+  userValidation()
+})
 
 planTrip.addEventListener('click', () => {
   domUpdates.planTrip(allDestinations.destinations, trips);
@@ -30,20 +43,39 @@ bookTrip.addEventListener('click', () => {
 })
 
 backToMain.addEventListener('click', () => {
+  const newTripForm = document.getElementById('newTripForm');
+  event.preventDefault()
   planTrip.classList.toggle('hidden');
   userStats.classList.toggle('hidden');
   newTripForm.classList.toggle('hidden');
 })
 
-function onStartup() {
-  fetchCurrentData()
-};
+function userValidation() {
+  const usernameInput = document.getElementById('usernameInput');
+  const passwordInput = document.getElementById('passwordInput');
+  const loginError = document.getElementById('loginError');
+  let userName = usernameInput.value;
+  let userID = Number(userName.split('traveler')[1]);
+  const validateUser = () => {
+  }
+  if (userID <= 50 && userID > 0 && passwordInput.value === 'travel2020') {
+    loginPage.classList.toggle('hidden');
+    sideWindow.classList.toggle('hidden');
+    tripsDisplay.classList.toggle('hidden');
+    planTrip.classList.toggle('hidden');
+    fetchCurrentData(userID)
+  } else if (passwordInput.value != 'travel2020') {
+    loginError.innerHTML = 'Invalid password, please try again.'
+  }
+
+}
 
 
-function fetchCurrentData() {
-  getData()
+function fetchCurrentData(num) {
+  getData(num)
   .then(allData => {
-    let userID = 2;
+    let userID = num;
+    console.log(userID);
     trips = new TripsRepo(allData.tripsData);
     allDestinations = new DestinationsRepo(allData.destinationsData);
     currentUser = new Traveler(allData.travelerData.find(traveler => traveler.id === Number(userID)));

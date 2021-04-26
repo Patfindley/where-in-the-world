@@ -2,7 +2,7 @@ const travelersAPI = 'http://localhost:3001/api/v1/travelers';
 const tripsAPI = 'http://localhost:3001/api/v1/trips';
 const destinationsAPI = 'http://localhost:3001/api/v1/destinations';
 
-export const getData = () => {
+export const getData = (num) => {
   let travelerData = fetch(travelersAPI)
     .then(response => response.json())
     .then(travelerData => {

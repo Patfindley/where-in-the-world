@@ -3,6 +3,15 @@ import { bookPlannedTrip} from './index';
 
 const domUpdates = {
 
+  userLogin() {
+    console.log(userName);
+    if (usernameInput)
+    loginPage.classList.toggle('hidden');
+    sideWindow.classList.toggle('hidden');
+    tripsDisplay.classList.toggle('hidden');
+    planTrip.classList.toggle('hidden');
+  },
+
   greetUser(user) {
     const userName = document.getElementById('userName');
     const travelerType = document.getElementById('travelerType');
@@ -32,7 +41,6 @@ const domUpdates = {
     userTrips.innerHTML = '';
     destinations.map(destination => {
       let trip = trips.find(trip => {return trip.destinationID === destination.id})
-      console.log(trip)
       const tripDetailsDisplay = document.getElementById('tripDetailsDisplay')
       return userTrips.innerHTML +=
       `<article class="trip" aria-label="trip-information">
