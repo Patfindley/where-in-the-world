@@ -41,6 +41,7 @@ const domUpdates = {
           <div class="trip-info-display">
             <div class="trip-details-display" id="tripDetailsDisplay ${destination.id}">
             <h2 id="destinationDisplay"aria-label="destination">${destination.destination}</h2>
+              <h3 class="trip-status" aria-label="trip-status">${trip.status}</h3>
               <h3 class="trip-date">Departure: ${trip.date}</h3>
               <h3>Duration: ${trip.duration} Days</h3>
               <h3>Travelers: ${trip.travelers}</h3>
@@ -52,24 +53,6 @@ const domUpdates = {
     });
   },
 
-  // `<div class="trip-details-display" id="tripDetailsDisplay ${destination.id}">
-  //   <h3 class="trip-date">Departure: ${trip.date}</h3>
-  //   <h3>Duration: ${trip.duration}</h3>
-  //   <h3>Travelers: ${trip.travelers}</h3>
-  //   <h3>Points Earned:</h3>
-  // </div>
-  // `
-
-  // ${trips.map(trip => {
-  //   return destinationDisplay.insertAdjacentHTML('afterend', `<div
-  //    class="trip-details-display" id="tripDetailsDisplay ${destination.id}">
-  //     <h3 class="trip-date">Departure: ${trip.date}</h3>
-  //     <h3>Duration: ${trip.duration}</h3>
-  //     <h3>Travelers: ${trip.travelers}</h3>
-  //     <h3>Points Earned:</h3>
-  //   </div> `)
-  // })}
-
   planTrip(destinations, trips) {
     const userStats = document.getElementById('userInfo');
     const newTripForm = document.getElementById('newTripForm');
@@ -78,6 +61,7 @@ const domUpdates = {
     const tripDepart = document.getElementById('tripDepart');
     const tripReturn = document.getElementById('tripReturn');
     const numTravelers = document.getElementById('numTravelers');
+    planTrip.classList.toggle('hidden');
     userStats.classList.toggle('hidden');
     newTripForm.classList.toggle('hidden');
     destinationList.innerHTML = destinations.map(destination => {

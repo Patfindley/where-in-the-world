@@ -17,7 +17,7 @@ const userName = document.getElementById('userName');
 const planTrip = document.getElementById('planTrip');
 const newTripForm = document.getElementById('NewTripForm');
 const bookTrip = document.getElementById('bookTrip');
-
+const backToMain = document.getElementById('backToMain');
 let currentUser, allDestinations, trips;
 window.onload = onStartup();
 
@@ -29,6 +29,11 @@ bookTrip.addEventListener('click', () => {
   domUpdates.bookTrip(event, currentUser, allDestinations.destinations, trips);
 })
 
+backToMain.addEventListener('click', () => {
+  planTrip.classList.toggle('hidden');
+  userStats.classList.toggle('hidden');
+  newTripForm.classList.toggle('hidden');
+})
 
 function onStartup() {
   fetchCurrentData()

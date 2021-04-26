@@ -1,4 +1,5 @@
 @import 'normalize';
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Special+Elite&display=swap');
 // * {
 //   border: 2px red solid
 // }
@@ -9,6 +10,7 @@ $primary-background: #FBFBF8;
 body {
   background: $primary-background;
   display: flex;
+  font-family: 'Didact Gothic', sans-serif;
 };
 
 
@@ -23,9 +25,27 @@ body {
   .plan-trip {
     border: 0;
     width: 175px;
-    width: var(__size);
     height: 175px;
-    width: var(__size);
+    border-radius: 69px;
+    background: #FBFBF8;
+    box-shadow:  -20px 20px 60px #d5d5d3,
+                  20px -20px 60px #ffffff;
+  }
+
+  .book-trip {
+    border: 0;
+    width: 175px;
+    height: 175px;
+    border-radius: 69px;
+    background: #FBFBF8;
+    box-shadow:  -20px 20px 60px #d5d5d3,
+                  20px -20px 60px #ffffff;
+  }
+
+  .back-to-main {
+    border: 0;
+    width: 175px;
+    height: 175px;
     border-radius: 69px;
     background: #FBFBF8;
     box-shadow:  -20px 20px 60px #d5d5d3,
@@ -64,7 +84,6 @@ body {
       left: 50%;
       transform: translate(-50%, -50%);
     }
-  }
 
     .trip-details-display {
       z-index: 1;
@@ -73,10 +92,15 @@ body {
       left: 32%;
       height: auto;
       width: 35%;
-      background-color: black;
-      color: white;
-      opacity: 75%;
+      background-color: #019F88;
+      color: #EAE4E0;
+      opacity: 85%;
     }
+  }
+
+  .display-title {
+    font-family: 'Special Elite', cursive;
+  }
 
   .hidden {
     display: none !important;
