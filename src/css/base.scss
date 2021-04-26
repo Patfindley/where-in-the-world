@@ -64,16 +64,19 @@ body {
       left: 50%;
       transform: translate(-50%, -50%);
     }
-
-    // .trip-info-display {
-    //   position: absolute;
-    //   bottom: 5%;
-    //   background-color: green;
-    //   color: red;
-    //   height: auto;
-    //   width: 25%;
-    // }
   }
+
+    .trip-details-display {
+      z-index: 1;
+      position: absolute;
+      bottom: 5%;
+      left: 32%;
+      height: auto;
+      width: 35%;
+      background-color: black;
+      color: white;
+      opacity: 75%;
+    }
 
   .hidden {
     display: none !important;
