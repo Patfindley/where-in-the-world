@@ -64,6 +64,8 @@ function userValidation() {
     tripsDisplay.classList.toggle('hidden');
     planTrip.classList.toggle('hidden');
     fetchCurrentData(userID)
+  } else if (userID > 50 || userID < 0 || !userID) {
+    loginError.innerHTML = 'Invalid user name, please try again.'
   } else if (passwordInput.value != 'travel2020') {
     loginError.innerHTML = 'Invalid password, please try again.'
   }
