@@ -11,12 +11,9 @@ class Traveler {
     myTrips.forEach(trip => this.trips.push(trip));
   }
 
-  destinationsVisited(destinations) { // write a test for this!
+  destinationsVisited(destinations) {
     return destinations.filter(destination => this.trips.find(trip => trip.destinationID === destination.id))
   }
-
-  //for every trip
-  //find
 
 };
 

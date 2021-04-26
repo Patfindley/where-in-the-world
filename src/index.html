@@ -8,8 +8,8 @@
     <aside class="side-window">
       User Info
       <img class="user-picture" src="" alt="user profile picture">
-      <h1 class="user-name" id="userName">User</h1>
-      <h2 class="traveler-type" id="travelerType">Type</h2>
+      <h1 class="user-name" id="userName" aria-label="user-name">User</h1>
+      <h2 class="traveler-type" id="travelerType" aria-label="traveler-type">Type</h2>
       <div class="user-stats" id="userInfo">
         Welcome! User info goes here!
       </div>
@@ -24,9 +24,9 @@
         <label for="number-of-travelers">Number of Travelers</label>
         <input aria-label="number-of-travelers-select" type="number" class="number-travelers" id="numTravelers" value="1" min="1">
         <h3 aria-label="estimated-trip-cost" class="estimated-trip-cost trip-error" id="estimatedTripCost"></h3>
-        <button class="book-trip" id="bookTrip">
+        <button class="book-trip" id="bookTrip" aria-label="book-trip">
       </form>
-      <button class="plan-trip" id="planTrip">
+      <button class="plan-trip" id="planTrip" aria-label="plan-trip">
       Go Somewhere!
       </button>
     </aside>
