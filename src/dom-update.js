@@ -62,6 +62,8 @@ const domUpdates = {
   },
 
   planTrip(destinations, trips) {
+    const today = new Date();
+    console.log(today)
     const userStats = document.getElementById('userInfo');
     const newTripForm = document.getElementById('newTripForm');
     const destinationList = document.getElementById('destinationList');
@@ -69,6 +71,7 @@ const domUpdates = {
     const tripDepart = document.getElementById('tripDepart');
     const tripReturn = document.getElementById('tripReturn');
     const numTravelers = document.getElementById('numTravelers');
+    newTripForm.setAttribute('min', today)
     planTrip.classList.toggle('hidden');
     userStats.classList.toggle('hidden');
     newTripForm.classList.toggle('hidden');
@@ -85,8 +88,13 @@ const domUpdates = {
     const tripReturn = document.getElementById('tripReturn');
     const daysAway = tripReturn.value.split('-')[2] - tripDepart.value.split('-')[2];
     let tripID = trips.allTrips.length;
-    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(numTravelers.value, Number(destinationList.value), daysAway, destinations)}$`;
-    console.log(trips, trips.allTrips.length);
+    if (!tripDepart.value) {
+      estimatedTripCost.innerHTML = "Please select departure date";
+    } else if (new Date(tripDepart.value) < Date.now() || new Date(tripReturn.value) < Date.now()) {
+      estimatedTripCost.innerHTML = "Please select valid departure date";
+    } else if (!tripReturn.value) {
+      estimatedTripCost.innerHTML = "Please select return date"
+    } else {
     bookPlannedTrip(tripID + 1, currentUser.id, Number(destinationList.value), Number(numTravelers.value), tripDepart.value.split('-').join('/'), daysAway);
     tripID++
     currentUser.trips.push({
@@ -99,7 +107,9 @@ const domUpdates = {
       status: 'pending',
       suggestedActivities: []
     })
+    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(numTravelers.value, Number(destinationList.value), daysAway, destinations)}$`;
     domUpdates.displayDestinations(currentUser, trips.travelerTrips(currentUser.id), trips.destinationsVisited(currentUser.id, destinations));
+  }
   },
 
   displayErr(err) {

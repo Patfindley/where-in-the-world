@@ -1,4 +1,3 @@
-
 import './css/base.scss';
 
 import domUpdates from './dom-update.js';
@@ -7,7 +6,6 @@ import Traveler from './Traveler-Class';
 import TripsRepo from './TripsRepo-Class';
 import DestinationsRepo from './DestinationsRepo-Class';
 
-import datepicker from 'js-datepicker'
 // const picker = datepicker('selector', 'options');
 import { getData, postData } from './APICalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
@@ -102,17 +100,3 @@ export function bookPlannedTrip(id, userID, destID, numTravelers, departDate, da
   }
   postData(data);
 }
-
-// function removePantry(arr) {
-//   if (typeof(arr[0]) === "string") {
-//     return
-//   }
-//   arr.forEach(ingredient => {
-//     let data = {
-//       "userID": user.id,
-//       "ingredientID": ingredient.id,
-//       "ingredientModification": Number(`-${ingredient.quantity.amount}`)
-//     };
-//     postData(data)
-//   })
-//}
