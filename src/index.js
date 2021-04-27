@@ -13,6 +13,7 @@ import { getData, postData } from './APICalls';
 const loginButton = document.getElementById('loginButton');
 const loginPage = document.getElementById('loginPage');
 
+const userPicture = document.getElementById('userPicture');
 const userName = document.getElementById('userName');
 const planTrip = document.getElementById('planTrip');
 const tripsDisplay = document.getElementById('tripsDisplay');
@@ -69,6 +70,7 @@ function userValidation() {
     tripsDisplay.classList.toggle('hidden');
     planTrip.classList.toggle('hidden');
     fetchCurrentData(userID)
+    setMinDates()
   } else if (userID > 50 || userID < 0 || !userID) {
     loginError.innerHTML = 'Invalid user name, please try again.'
   } else if (passwordInput.value != 'travel2020') {
@@ -89,6 +91,12 @@ function fetchCurrentData(num) {
     domUpdates.displayTravelerInfo(trips.travelerAnnualSpent(userID, allDestinations.destinations), trips.travelerTrips(userID)); // refactor this
     domUpdates.displayDestinations(currentUser, currentUser.trips, currentUser.destinationsVisited(allDestinations.destinations));
   })
+}
+
+function setMinDates() {
+  let today = new Date().toISOString().substring(0, 10);
+  tripDepart.setAttribute("min", today);
+  tripReturn.setAttribute("min", today);
 }
 
 function getTripEstimate() {

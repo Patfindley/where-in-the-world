@@ -10,12 +10,12 @@
       <label for="username-input">USER NAME</label>
       <input aria-label="username-input" name="username-input" class="username-input" id="usernameInput">
       <label for="password-input">PASSWORD</label>
-      <input aria-label="password-input" name="password-input" class="password-input" id="passwordInput">
+      <input aria-label="password-input" name="password-input" type="password" class="password-input" id="passwordInput">
       <p class="login-error" id="loginError"></p>
       <button class="login-button" id="loginButton">Let's Go</button>
     </section>
     <aside class="side-window hidden" id="sideWindow">
-      <img class="user-picture" src="" alt="user profile picture">
+      <img class="user-picture" src="" alt="user profile picture" id="userPicture">
       <h1 class="user-name" id="userName" aria-label="user-name">User</h1>
       <h2 class="traveler-type" id="travelerType" aria-label="traveler-type">Type</h2>
       <div class="user-stats" id="userInfo">
@@ -27,7 +27,7 @@
         <label for="trip-depart">Departure Date</label>
         <input aria-label="start-date-selector" type="date" class="trip-depart" id="tripDepart" name="trip-depart" min="">
         <label for="trip-return">Return Date</label>
-        <input aria-label="return-date-selector" type="date" class"trip-return" id="tripReturn" name="trip-return">
+        <input aria-label="return-date-selector" type="date" class"trip-return" id="tripReturn" name="trip-return" min="">
         <label for="number-of-travelers">Number of Travelers</label>
         <input aria-label="number-of-travelers-select" type="number" class="number-travelers" id="numTravelers" value="1" min="1">
         <h3 aria-label="estimated-trip-cost" class="estimated-trip-cost trip-error" id="estimatedTripCost"></h3>
@@ -41,6 +41,7 @@
       <section class="user-trips" id="userTrips">
       </sectin>
     </main>
+
 
 
 

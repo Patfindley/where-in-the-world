@@ -13,8 +13,10 @@ const domUpdates = {
   },
 
   greetUser(user) {
+    const userPicture = document.getElementById('userPicture')
     const userName = document.getElementById('userName');
     const travelerType = document.getElementById('travelerType');
+    // userPicture.setAttribute('src', './assets/Profile-Icon.jpeg');
     userName.innerHTML = user.name;
     travelerType.innerHTML = `Traveler-level: ${user.type}`
   },
@@ -89,8 +91,8 @@ const domUpdates = {
     let tripID = trips.allTrips.length;
     if (!tripDepart.value) {
       estimatedTripCost.innerHTML = "Please select departure date";
-    } else if (new Date(tripDepart.value) < Date.now() || new Date(tripReturn.value) < Date.now()) {
-      estimatedTripCost.innerHTML = "Please select valid departure date";
+    } else if (tripReturn.value.split('-') < tripDepart.value.split('-')) {
+      estimatedTripCost.innerHTML = "Please select valid return date";
     } else if (!tripReturn.value) {
       estimatedTripCost.innerHTML = "Please select return date"
     } else {
