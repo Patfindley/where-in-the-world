@@ -4,30 +4,136 @@
 //   border: 2px red solid
 // }
 
-$primary-background: #FBFBF8;
-
+$primary-background: #f7eae3;
+$primary-font: #00435A;
+@mixin neuButton($color) {
+  color: $color;
+  border: 0;
+  width: 175px;
+  height: 175px;
+  margin-top: 25%;
+  border-radius: 56px;
+  background: linear-gradient(225deg, #fffaf3, #ded3cc);
+  box-shadow:  -15px 15px 32px #cfc5bf,
+           15px -15px 32px #ffffff;
+}
 
 
 body {
   background: $primary-background;
-  display: flex;
+  // display: flex;
+  // flex-direction: column;
   font-family: 'Didact Gothic', sans-serif;
-  color: #00435A;
+  color: $primary-font;
 };
 
+.login-page {
+  font-family: 'Special Elite', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // margin-left: 18%;
+  margin-top: 40%;
+  padding: 1%;
+  text-align: center;
+}
+
+.login-error {
+  padding-bottom: 5%;
+}
+
+.login-button {
+  font-family: 'Special Elite', cursive;
+  font-size: 2em;
+  @include neuButton($primary-font);
+  // border: 0;
+  // width: 175px;
+  // height: 175px;
+  // margin-top: 25%;
+  // border-radius: 56px;
+  // background: linear-gradient(225deg, #fffaf3, #ded3cc);
+  // box-shadow:  -15px 15px 32px #cfc5bf,
+  //          15px -15px 32px #ffffff;
+}
+
+.user-picture {
+  width: 16vh;
+}
+
+// .new-trip-form {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+
+// .book-trip {
+//   border: 0;
+//   width: 175px;
+//   height: 175px;
+//   border-radius: 69px;
+//   background: #FBFBF8;
+//   box-shadow:  -20px 20px 60px #d5d5d3,
+//                 20px -20px 60px #ffffff;
+// }
+
+// .back-to-main {
+//   border: 0;
+//   width: 175px;
+//   height: 175px;
+//   border-radius: 69px;
+//   background: #FBFBF8;
+//   box-shadow:  -20px 20px 60px #d5d5d3,
+//                 20px -20px 60px #ffffff;
+// }
+
+.plan-trip {
+  @include neuButton($primary-font);
+  // border: 0;
+  // width: 175px;
+  // height: 175px;
+  // border-radius: 69px;
+  // background: #FBFBF8;
+  // box-shadow:  -20px 20px 60px #d5d5d3,
+  // 20px -20px 60px #ffffff;
+}
+
+.side-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 39%;
+  margin-left: 30%;
+}
+
+// main {
+//   display: flex;
+//   flex-direction: column;
+//   width: 70%;
+//   text-align: center;
+//   overflow: hidden;
+//   // flex-wrap: nowrap;
+// }
+
+.hidden {
+  display: none !important;
+}
 
 
+@media screen and (min-width: 812px) {
 
-@media only screen and (min-device-width: 812px) {
   body {
     background: $primary-background;
     display: flex;
-  };
+    flex-direction: initial;
+  }
 
   .login-page {
     display: flex;
     flex-direction: column;
-    margin-left: 43%;
+    align-items: center;
+    width: 40%;
+    margin-left: 30%;
     margin-top: 15%;
     text-align: center;
   }
@@ -39,20 +145,38 @@ body {
     border: 0;
     width: 175px;
     height: 175px;
-    border-radius: 69px;
-    background: #FBFBF8;
-    box-shadow:  -20px 20px 60px #d5d5d3,
-                  20px -20px 60px #ffffff;
+    margin-top: 15%;
+    border-radius: 56px;
+    background: linear-gradient(225deg, #fffaf3, #ded3cc);
+    box-shadow:  -15px 15px 32px #cfc5bf,
+             15px -15px 32px #ffffff;
+  }
+
+  .side-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 30%;
+    margin-left: 0;
+  }
+
+  .new-trip-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .plan-trip {
     border: 0;
+    margin-top: 10%;
     width: 175px;
     height: 175px;
-    border-radius: 69px;
-    background: #FBFBF8;
-    box-shadow:  -20px 20px 60px #d5d5d3,
-                  20px -20px 60px #ffffff;
+    color: $primary-font;
+    border-radius: 56px;
+    background: linear-gradient(225deg, #fffaf3, #ded3cc);
+    box-shadow:  -15px 15px 32px #cfc5bf,
+             15px -15px 32px #ffffff;
   }
 
   .book-trip {
@@ -75,12 +199,6 @@ body {
                   20px -20px 60px #ffffff;
   }
 
-  .side-window {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 30%;
-  }
 
   main {
     display: flex;
@@ -88,7 +206,6 @@ body {
     width: 70%;
     text-align: center;
     overflow: hidden;
-    // flex-wrap: nowrap;
   }
 
   .trip {

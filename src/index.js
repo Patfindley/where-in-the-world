@@ -10,6 +10,7 @@ import DestinationsRepo from './DestinationsRepo-Class';
 import { getData, postData } from './APICalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
+// import '../assets/profile-img.png'
 const loginButton = document.getElementById('loginButton');
 const loginPage = document.getElementById('loginPage');
 

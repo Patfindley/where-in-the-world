@@ -12,7 +12,7 @@
       <label for="password-input">PASSWORD</label>
       <input aria-label="password-input" name="password-input" type="password" class="password-input" id="passwordInput">
       <p class="login-error" id="loginError"></p>
-      <button class="login-button" id="loginButton">Let's Go</button>
+      <button class="login-button" id="loginButton" tab="0">Let's Go</button>
     </section>
     <aside class="side-window hidden" id="sideWindow">
       <img class="user-picture" src="" alt="user profile picture" id="userPicture">
@@ -31,8 +31,10 @@
         <label for="number-of-travelers">Number of Travelers</label>
         <input aria-label="number-of-travelers-select" type="number" class="number-travelers" id="numTravelers" value="1" min="1">
         <h3 aria-label="estimated-trip-cost" class="estimated-trip-cost trip-error" id="estimatedTripCost"></h3>
+        <div class="button-container">
         <button class="book-trip" id="bookTrip" aria-label="book-trip">BOOK IT!</button>
         <button class="back-to-main" id="backToMain" aria-label="back-to-main">Back To Main</button>
+      </div>
       </form>
       <button class="plan-trip hidden" id="planTrip" aria-label="plan-trip">Go Somewhere!</button>
     </aside>

@@ -1,4 +1,5 @@
 import { bookPlannedTrip} from './index';
+import profileImg from '../assets/profile-img.png'
 
 
 const domUpdates = {
@@ -16,6 +17,7 @@ const domUpdates = {
     const userPicture = document.getElementById('userPicture')
     const userName = document.getElementById('userName');
     const travelerType = document.getElementById('travelerType');
+    userPicture.src = user.profileImg;
     if (user.name) {
     userName.innerHTML = user.name;
     travelerType.innerHTML = `Traveler-level: ${user.type}`
