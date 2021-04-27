@@ -1,8 +1,12 @@
+import profileImg from '../assets/profile-img.png'
+
+
 class Traveler {
   constructor(data) {
     this.id = data.id;
     this.name = data.name;
     this.type = data.travelerType;
+    this.profileImg = profileImg || data.profileImg;
     this.trips = [];
   }
 

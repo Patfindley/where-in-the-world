@@ -1,33 +1,152 @@
 @import 'normalize';
 @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Special+Elite&display=swap');
-// * {
-//   border: 2px red solid
-// }
-
-$primary-background: #FBFBF8;
-
-
-
-body {
-  background: $primary-background;
-  display: flex;
-  font-family: 'Didact Gothic', sans-serif;
-  color: #00435A;
+$primary-background-color: #f7eae3;
+$primary-font-color: #00435A;
+$primary-font-style: 'Didact Gothic', sans-serif;
+@mixin neuButton($color) {
+  color: $color;
+  border: 0;
+  width: 175px;
+  height: 175px;
+  margin-top: 25%;
+  border-radius: 56px;
+  background: linear-gradient(225deg, #fffaf3, #ded3cc);
+  box-shadow: -15px 15px 32px #cfc5bf, 15px -15px 32px #ffffff;
 };
 
+body {
+  background: $primary-background-color;
+  font-family: $primary-font-style;
+  color: $primary-font-color;
+};
 
+.login-page {
+  font-family: 'Special Elite', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40%;
+  padding: 1%;
+  text-align: center;
+}
 
+.login-error {
+  padding-bottom: 5%;
+}
 
-@media only screen and (min-device-width: 812px) {
+.login-button {
+  font-family: 'Special Elite', cursive;
+  font-size: 2em;
+  @include neuButton($primary-font-color);
+}
+
+.user-picture {
+  width: 16vh;
+}
+
+.side-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 39%;
+  margin-left: 30%;
+}
+
+.trips-display {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.trip-wrap {
+  height: 37vh;
+  width: 110vw;
+  overflow: hidden;
+}
+
+.trip {
+  display: inline-block;
+  position: relative;
+  height: 4%;
+  width: 100%;
+  transition: 0.8s ease;
+  overflow: hidden;
+
+  .trip-image {
+    position: relative;
+    height: 100%;
+    width: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .trip-details-display {
+    z-index: 1;
+    position: absolute;
+    bottom: 13%;
+    left: 19%;
+    height: auto;
+    width: 64%;
+    background-color: #019F88;
+    color: #EAE4E0;
+    opacity: 85%;
+  }
+}
+// .new-trip-form {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+// .book-trip {
+//   border: 0;
+//   width: 175px;
+//   height: 175px;
+//   border-radius: 69px;
+//   background: #FBFBF8;
+//   box-shadow:  -20px 20px 60px #d5d5d3,
+//                 20px -20px 60px #ffffff;
+// }
+// .back-to-main {
+//   border: 0;
+//   width: 175px;
+//   height: 175px;
+//   border-radius: 69px;
+//   background: #FBFBF8;
+//   box-shadow:  -20px 20px 60px #d5d5d3,
+//                 20px -20px 60px #ffffff;
+// }
+
+.plan-trip {
+  @include neuButton($primary-font-color);
+  font-family: $primary-font-style;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+.hidden {
+  display: none !important;
+}
+@media screen and (min-width: 812px) {
   body {
-    background: $primary-background;
+    background: $primary-background-color;
     display: flex;
-  };
+    flex-direction: initial;
+  }
 
   .login-page {
     display: flex;
     flex-direction: column;
-    margin-left: 43%;
+    align-items: center;
+    width: 40%;
+    margin-left: 30%;
     margin-top: 15%;
     text-align: center;
   }
@@ -39,47 +158,66 @@ body {
     border: 0;
     width: 175px;
     height: 175px;
-    border-radius: 69px;
-    background: #FBFBF8;
-    box-shadow:  -20px 20px 60px #d5d5d3,
-                  20px -20px 60px #ffffff;
-  }
-
-  .plan-trip {
-    border: 0;
-    width: 175px;
-    height: 175px;
-    border-radius: 69px;
-    background: #FBFBF8;
-    box-shadow:  -20px 20px 60px #d5d5d3,
-                  20px -20px 60px #ffffff;
-  }
-
-  .book-trip {
-    border: 0;
-    width: 175px;
-    height: 175px;
-    border-radius: 69px;
-    background: #FBFBF8;
-    box-shadow:  -20px 20px 60px #d5d5d3,
-                  20px -20px 60px #ffffff;
-  }
-
-  .back-to-main {
-    border: 0;
-    width: 175px;
-    height: 175px;
-    border-radius: 69px;
-    background: #FBFBF8;
-    box-shadow:  -20px 20px 60px #d5d5d3,
-                  20px -20px 60px #ffffff;
+    margin-top: 15%;
+    border-radius: 56px;
+    background: linear-gradient(225deg, #fffaf3, #ded3cc);
+    box-shadow: -15px 15px 32px #cfc5bf, 15px -15px 32px #ffffff;
   }
 
   .side-window {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     width: 30%;
+    margin-left: 0;
+  }
+
+  .trip-wrap {
+    height: 117vh;
+    width: 110vw;
+    overflow: hidden;
+  }
+
+  .new-trip-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-trip {
+    border: 0;
+    margin-top: 10%;
+    width: 175px;
+    height: 175px;
+    color: $primary-font-color;
+    border-radius: 56px;
+    background: linear-gradient(225deg, #fffaf3, #ded3cc);
+    box-shadow: -15px 15px 32px #cfc5bf, 15px -15px 32px #ffffff;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-trip {
+    border: 0;
+    width: 175px;
+    height: 84px;
+    margin-bottom: 13%;
+    border-radius: 56px;
+    background: linear-gradient(225deg, #fffaf3, #ded3cc);
+    box-shadow: -7px 7px 19px #e1d5cf, 7px -7px 19px #fffff7;
+  }
+
+  .back-to-main {
+    border: 0;
+    width: 175px;
+    height: 84px;
+    border-radius: 56px;
+    background: linear-gradient(225deg, #fffaf3, #ded3cc);
+    box-shadow: -7px 7px 19px #e1d5cf, 7px -7px 19px #fffff7;
   }
 
   main {
@@ -88,7 +226,6 @@ body {
     width: 70%;
     text-align: center;
     overflow: hidden;
-    // flex-wrap: nowrap;
   }
 
   .trip {
@@ -96,14 +233,14 @@ body {
     position: relative;
     height: 4%;
     width: 100%;
-    transition: .8s ease;
+    transition: 0.8s ease;
     overflow: hidden;
 
     .trip-image {
       position: relative;
       height: 100%;
       width: 100%;
-      top: 50%;
+      top: 6%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
@@ -128,5 +265,4 @@ body {
   .hidden {
     display: none !important;
   }
-
 }
