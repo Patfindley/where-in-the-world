@@ -7,7 +7,10 @@ import TripsRepo from './TripsRepo-Class';
 import DestinationsRepo from './DestinationsRepo-Class';
 
 // const picker = datepicker('selector', 'options');
-import { getData, postData } from './APICalls';
+import {
+  getData,
+  postData
+} from './APICalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 // import '../assets/profile-img.png'
@@ -31,7 +34,6 @@ const userStats = document.getElementById('userInfo');
 
 
 let currentUser, allDestinations, trips;
-// window.onload = onStartup();
 
 loginButton.addEventListener('click', () => {
   userValidation()
@@ -63,8 +65,7 @@ function userValidation() {
   const loginError = document.getElementById('loginError');
   let userName = usernameInput.value;
   let userID = Number(userName.split('traveler')[1]);
-  const validateUser = () => {
-  }
+  const validateUser = () => {}
   if (userID <= 50 && userID > 0 && passwordInput.value === 'travel2020') {
     loginPage.classList.toggle('hidden');
     sideWindow.classList.toggle('hidden');
@@ -81,17 +82,17 @@ function userValidation() {
 
 function fetchCurrentData(num) {
   getData(num)
-  .then(allData => {
-    let userID = num;
-    trips = new TripsRepo(allData.tripsData);
-    allDestinations = new DestinationsRepo(allData.destinationsData);
-    currentUser = new Traveler(allData.travelerData.find(traveler => traveler.id === Number(userID)));
-    currentUser.travelerTrips(trips.allTrips)
-    let visitedDestinations = currentUser.destinationsVisited(allDestinations.destinations);
-    domUpdates.greetUser(currentUser);
-    domUpdates.displayTravelerInfo(trips.travelerAnnualSpent(userID, allDestinations.destinations), trips.travelerTrips(userID)); // refactor this
-    domUpdates.displayDestinations(currentUser, currentUser.trips, currentUser.destinationsVisited(allDestinations.destinations));
-  })
+    .then(allData => {
+      let userID = num;
+      trips = new TripsRepo(allData.tripsData);
+      allDestinations = new DestinationsRepo(allData.destinationsData);
+      currentUser = new Traveler(allData.travelerData.find(traveler => traveler.id === Number(userID)));
+      currentUser.travelerTrips(trips.allTrips)
+      let visitedDestinations = currentUser.destinationsVisited(allDestinations.destinations);
+      domUpdates.greetUser(currentUser);
+      domUpdates.displayTravelerInfo(trips.travelerAnnualSpent(userID, allDestinations.destinations), trips.travelerTrips(userID)); // refactor this
+      domUpdates.displayDestinations(currentUser, currentUser.trips, currentUser.destinationsVisited(allDestinations.destinations));
+    })
 }
 
 function setMinDates() {
@@ -107,17 +108,17 @@ function getTripEstimate() {
     console.log(trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, allDestinations.destinations))
     estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, allDestinations.destinations)}$`;
   } else {
-  estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, allDestinations.destinations)}$`;
-}
+    estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, allDestinations.destinations)}$`;
+  }
 }
 
 export function bookPlannedTrip(id, userID, destID, numTravelers, departDate, daysAway) {
   let data = {
-    "id": id ,
-    "userID": userID ,
-    "destinationID": destID ,
-    "travelers": numTravelers ,
-    "date": departDate ,
+    "id": id,
+    "userID": userID,
+    "destinationID": destID,
+    "travelers": numTravelers,
+    "date": departDate,
     "duration": daysAway,
     "status": 'pending',
     "suggestedActivities": []
