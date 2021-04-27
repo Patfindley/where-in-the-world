@@ -13,22 +13,21 @@ const domUpdates = {
   },
 
   greetUser(user) {
+    const userPicture = document.getElementById('userPicture')
     const userName = document.getElementById('userName');
     const travelerType = document.getElementById('travelerType');
+    if (user.name) {
     userName.innerHTML = user.name;
     travelerType.innerHTML = `Traveler-level: ${user.type}`
+    }
   },
 
   displayTravelerInfo(total, trips) {
     const userStats = document.getElementById('userInfo');
     const tripStatus = trips.reduce((tripObj, trip) => {
-      if (!tripObj[trip.status]) {
-        tripObj[trip.status] = 1;
-      } else {
         tripObj[trip.status]++
-      }
       return tripObj;
-    }, {})
+    }, {approved: 0, pending: 0})
     userStats.innerHTML =
       ` <h3 aria-label="welcome"> Welcome Back! </h3>
     <h3>Confirmed Trips: ${tripStatus.approved}</h3>
@@ -53,7 +52,6 @@ const domUpdates = {
               <h3 class="trip-date">Departure: ${trip.date}</h3>
               <h3>Duration: ${trip.duration} Days</h3>
               <h3>Travelers: ${trip.travelers}</h3>
-              <h3>Points Earned:</h3>
             </div>
           </div>
         </div>
@@ -89,8 +87,8 @@ const domUpdates = {
     let tripID = trips.allTrips.length;
     if (!tripDepart.value) {
       estimatedTripCost.innerHTML = "Please select departure date";
-    } else if (new Date(tripDepart.value) < Date.now() || new Date(tripReturn.value) < Date.now()) {
-      estimatedTripCost.innerHTML = "Please select valid departure date";
+    } else if (tripReturn.value.split('-') < tripDepart.value.split('-')) {
+      estimatedTripCost.innerHTML = "Please select valid return date";
     } else if (!tripReturn.value) {
       estimatedTripCost.innerHTML = "Please select return date"
     } else {

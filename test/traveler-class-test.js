@@ -33,13 +33,25 @@ describe('Traveler', () => {
     expect(traveler1.type).to.eql("relaxer");
   });
 
-  it('should have a method to find what trips the traveler has been on', () => {
+  it('should have a property of trips the traveler has been on', () => {
+    expect(traveler1.trips).to.eql([]);
+  });
+
+  it('should have a method to find what trips', () => {
     traveler2.travelerTrips(trips);
     expect(traveler2.trips).to.deep.eql([{ id: 5, userID: 2, destinationID: 5, travelers: 3, date: '2020/04/30', duration: 18, status: 'approved', suggestedActivities: []},
     { id: 6, userID: 2, destinationID: 6, travelers: 3, date: '2020/06/29', duration: 9, status: 'approved', suggestedActivities: []},
     { id: 7, userID: 2, destinationID: 7, travelers: 5, date: '2020/5/28', duration: 20, status: 'approved', suggestedActivities: []},
     { id: 8, userID: 2, destinationID: 8, travelers: 6, date: '2021/02/07', duration: 4, status: 'approved', suggestedActivities: []}])
-  })
+  });
+
+  it('should have a method to find all trips traveler has taken', () => {
+    traveler2.travelerTrips(trips);
+    expect(traveler2.trips).to.deep.eql([{ id: 5, userID: 2, destinationID: 5, travelers: 3, date: '2020/04/30', duration: 18, status: 'approved', suggestedActivities: []},
+  { id: 6, userID: 2, destinationID: 6, travelers: 3, date: '2020/06/29', duration: 9, status: 'approved', suggestedActivities: []},
+  { id: 7, userID: 2, destinationID: 7, travelers: 5, date: '2020/5/28', duration: 20, status: 'approved', suggestedActivities: []},
+  { id: 8, userID: 2, destinationID: 8, travelers: 6, date: '2021/02/07', duration: 4, status: 'approved', suggestedActivities: []}])
+  });
 
   it('should have a method to find all destinations traveler has visited', () => {
     traveler2.travelerTrips(trips);
