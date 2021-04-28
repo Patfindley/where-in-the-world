@@ -19,6 +19,6 @@ class Traveler {
     return destinations.filter(destination => this.trips.find(trip => trip.destinationID === destination.id))
   }
 
-};
+}
 
 export default Traveler;

@@ -1,18 +1,19 @@
-import {
-  bookPlannedTrip
-} from './index';
-import profileImg from '../assets/profile-img.png'
+import { bookPlannedTrip } from './index';
+import { calculateDaysAway } from './index';
+import { updateTrips } from './index';
+import profileImg from '../assets/profile-img.png';
 
 
 const domUpdates = {
 
   userLogin() {
     console.log(userName);
-    if (usernameInput)
+    if (usernameInput) {
       loginPage.classList.toggle('hidden');
-    sideWindow.classList.toggle('hidden');
-    tripsDisplay.classList.toggle('hidden');
-    planTrip.classList.toggle('hidden');
+      sideWindow.classList.toggle('hidden');
+      tripsDisplay.classList.toggle('hidden');
+      planTrip.classList.toggle('hidden');
+    }
   },
 
   greetUser(user) {
@@ -45,8 +46,8 @@ const domUpdates = {
   displayDestinations(user, trips, destinations) {
     const userTrips = document.getElementById('userTrips');
     userTrips.innerHTML = '';
-    if (!destinations) {
-      userTrips.innerHTML = Book your first trip!
+    if (!destinations || !trips) {
+      userTrips.innerHTML = "Book your first trip!"
     } else {
       destinations.map(destination => {
         let trip = trips.find(trip => {
@@ -107,19 +108,10 @@ const domUpdates = {
     } else {
       bookPlannedTrip(tripID + 1, currentUser.id, Number(destinationList.value), Number(numTravelers.value), tripDepart.value.split('-').join('/'), daysAway);
       tripID++
-      currentUser.trips.push({
-        id: tripID + 1,
-        userID: currentUser.id,
-        destinationID: Number(destinationList.value),
-        travelers: Number(numTravelers.value),
-        date: tripDepart.value.split('-').join('/'),
-        duration: daysAway,
-        status: 'pending',
-        suggestedActivities: []
-      })
-      estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, destinations)}$`;
+      updateTrips(currentUser.trips, tripID, daysAway);
+      updateTrips(trips.allTrips, tripID, daysAway);
       bookTrip.innerHTML = "BOOKED!"
-      domUpdates.displayDestinations(currentUser, trips.travelerTrips(currentUser.id), trips.destinationsVisited(currentUser.id, destinations));
+      domUpdates.displayDestinations(currentUser, currentUser.trips, currentUser.destinationsVisited(destinations));
     }
   },
 

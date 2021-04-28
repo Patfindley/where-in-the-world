@@ -17,7 +17,7 @@ import {
 const loginButton = document.getElementById('loginButton');
 const loginPage = document.getElementById('loginPage');
 
-const userPicture = document.getElementById('userPicture');
+// const userPicture = document.getElementById('userPicture');
 const userName = document.getElementById('userName');
 const planTrip = document.getElementById('planTrip');
 const tripsDisplay = document.getElementById('tripsDisplay');
@@ -87,7 +87,7 @@ function fetchCurrentData(num) {
       trips = new TripsRepo(allData.tripsData);
       allDestinations = new DestinationsRepo(allData.destinationsData);
       currentUser = new Traveler(allData.travelerData.find(traveler => traveler.id === Number(userID)));
-      currentUser.travelerTrips(trips.allTrips)
+      currentUser.travelerTrips(trips.allTrips);
       let visitedDestinations = currentUser.destinationsVisited(allDestinations.destinations);
       domUpdates.greetUser(currentUser);
       domUpdates.displayTravelerInfo(trips.travelerAnnualSpent(userID, allDestinations.destinations), trips.travelerTrips(userID)); // refactor this
@@ -101,8 +101,15 @@ function setMinDates() {
   tripReturn.setAttribute("min", today);
 }
 
+export function calculateDaysAway(tripDepart, tripReturn) {
+  let startDate = new Date(tripDepart);
+  let endDate = new Date(tripReturn);
+  return (endDate - startDate) / (1000 * 60 * 60 * 24);
+
+}
+
 function getTripEstimate() {
-  const daysAway = tripReturn.value.split('-')[2] - tripDepart.value.split('-')[2];
+  const daysAway = calculateDaysAway(tripDepart.value, tripReturn.value)
   if (!tripDepart.value || !tripReturn.value) {
     let daysAway = 1
     console.log(trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, allDestinations.destinations))
@@ -110,6 +117,20 @@ function getTripEstimate() {
   } else {
     estimatedTripCost.innerHTML = `Estimated Cost: ${trips.tripEstimate(Number(numTravelers.value), Number(destinationList.value), daysAway, allDestinations.destinations)}$`;
   }
+}
+
+export function updateTrips(location, tripID, daysAway) {
+  location.push({
+    id: tripID + 1,
+    userID: currentUser.id,
+    destinationID: Number(destinationList.value),
+    travelers: Number(numTravelers.value),
+    date: tripDepart.value.split('-').join('/'),
+    duration: daysAway,
+    status: 'pending',
+    suggestedActivities: []
+  })
+  console.log(location)
 }
 
 export function bookPlannedTrip(id, userID, destID, numTravelers, departDate, daysAway) {
