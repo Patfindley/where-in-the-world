@@ -2,7 +2,7 @@
 
 Where To is an application designed to plan trips for users, and manage trip bookings by travel agents. Users can log in with their unique ID and password, choose a destination, trip duration, and amount of travelers before submitting a request to an agent, who can approve/deny requests. All data is fetched from multiple API's for both type of users, and posted as well.
 
-![Gif]()
+![Gif](https://media.giphy.com/media/LqOLXnOW9qLbR8nFFT/giphy.gif)
 
 ## Contributors
 
